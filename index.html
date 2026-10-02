@@ -68,15 +68,15 @@ const G=[
 {id:'e',t:'További menetlevelek',lab:['Előző','Következő'],x:1994,y:40,th:26,tt:'További menetlevelek',hh:56,nh:0,rh:40,rl:92,rlm:1,c:C([['sz','Menetlevél száma',10,196,0,'10–11']])},
 {id:'f',t:'Fékpróba / vonatvizsgálat',lab:R(12),x:22,y:490,th:28,tt:'Fékpróba / vonatvizsgálat E.2., E.12. Utasításoknak megfelelően megtörtént, a vonat közlekedtethető',hh:64,nh:0,rh:39.5,rl:26,rlh:'Sorszám',c:C([['nev','Név',28,300,0,'17',0,{c:1}],['fv','Fékpróba (x)',1,28,'Fékv.','18',1],['vv','Vonatvizsgálat (x)',1,28,'Vonatv.','',1],['kod','Foglalkoztató vasútvállalat kódszáma',8,175,0,'19',0,{c:1}],['sh','Sorhivatkozás',2,55,'Sor-hiv.','20'],['','',0,292,'Olvasható aláírás','21']])},
 {id:'t',t:'Vonat adatai (megállók)',lab:R(46),x:22,y:1084,th:0,hh:110,nh:0,rh:42.2,rl:28,rlh:'Sorszám',c:C([['ef','Előfogat (x)',1,34,'Előfogat','24',1],['vo','Vonó / Színkron (x)',1,34,'Vonó – Színkron','25',1],['s2','Színkron 2 (x)',1,34,'Színkron 2','26',1],['s3','Színkron 3 (x)',1,34,'Színkron 3','27',1],['kt','Kapcsolt toló (x)',1,34,'Kapcsolt toló','28',1],
-['vsz','Vonatszám',9,170,0,'29'],['mh','Menetvonal hív.',1,36,0,'30',1],['sk','Szolgálati hely kód',8,150,0,'31'],['rh','Megrendelő hív.',1,36,0,'32',1],['tk','Tevékenység kód',3,90,0,'33'],
+['vsz','Vonatszám',9,170,0,'29'],['mh','Menetvonal hív.',1,36,0,'30',1],['rh','Megrendelő hív.',1,36,0,'32',1],['tk','Tevékenység kód',3,90,0,'33'],
 ['el','Elegytömeg (t)',5,100,'SZIR – SZVÖRNET azonosító/Elegytömeg (t)','34'],['st','Személytengely',3,62,'SZIR – SZVÖRNET azonosító/Személy tengely','35'],['tt','Teher tengely',3,62,'SZIR – SZVÖRNET azonosító/Teher tengely','36'],
 ['vh','Vonathossz (m)',4,90,'Vonat-hossz (m)','37'],['eo','Előírt fékszázalék',3,50,'Fékszázalék/Előírt','38',1],['te','Tényleges fékszázalék',3,50,'Fékszázalék/Tényleges','39',1],
-['sn','Szolgálati hely neve',24,568,'Szolgálati hely megnevezése','40',0,{c:1}],['ir','Írásbeli r. sz.',3,70,0,'41'],
+['sn','Szolgálati hely neve',24,648,'Szolgálati hely megnevezése','40',0,{c:1}],['ir','Írásbeli r. sz.',3,70,0,'41'],
 ['ar','Érkezés',5,48,'Tolatási rendelkezésre állás/Érk./ó.','42',0,{t:1,s:0,lk:1}],['ar','Érkezés',5,48,'Tolatási rendelkezésre állás/Érk./p.','42',0,{t:1,s:1,lk:1}],['dp','Indulás',5,48,'Tolatási rendelkezésre állás/Ind./ó.','43',0,{t:1,s:0}],['dp','Indulás',5,48,'Tolatási rendelkezésre állás/Ind./p.','43',0,{t:1,s:1}],
-['','',0,330,'Igazolás olvasható aláírás, pecsét helye','44']])},
+['tr','További írásbeli rend. sz.',40,400,'Igazolás, További írásbeli rend. sz.','44',0,{c:1}]])},
 {id:'q',t:'Mellékletek (db)',lab:[''],custom:1,c:C([['a','Vonatterhelési kimutatás (db)',3],['b','Írásbeli rendelkezés (db)',3],['c','Fékpróba bárca (db)',3],['d','Tolatási kimutatás (db)',3],['e','Tolatási jegyzék (db)',3]])}
 ];
-const PR={p:['nev','tsz'],t:['sk','sn']};   // törzsadat párok
+const PR={p:['nev','tsz']};   // törzsadat párok
 const MK=['mv','k','v','a1','a2','b1','b2'];
 let S=ld('ml_s'),M=ld('ml_m');M.l=M.l||{};M.pr=M.pr||{};
 if(!Array.isArray(S.mvs)){S.mvs=[{}];MK.forEach(k=>{if(S['m.'+k])S.mvs[0][k]=S['m.'+k]})}
@@ -93,7 +93,7 @@ function initrc(){S.rc=S.rc||{};G.forEach(g=>{let n=DYN[g.id]?Math.max(1,S.rc[g.
  S.rc[g.id]=Math.min(n,g.lab.length)})}
 function dates(){   // közlekedés dátuma: az első nap + a megállók idejéből éjfélváltás
  const tm=s=>{const m=/^(\d\d):(\d\d)$/.exec(s||'');return m?+m[1]*60+ +m[2]:null};
- let last=-1;for(let r=0;r<46;r++)if(['sk','sn','ar','dp'].some(k=>S[kk('t',r,k)]))last=r;
+ let last=-1;for(let r=0;r<46;r++)if(['sn','ar','dp'].some(k=>S[kk('t',r,k)]))last=r;
  const sg=[{day:0,from:last>=0?1:'',to:''}];let pv=null;
  for(let r=0;r<=last;r++)for(const k of ['ar','dp']){const x=tm(S[kk('t',r,k)]);if(x==null)continue;
   if(pv!=null&&x<pv){const s=sg[sg.length-1],ov=k=='dp'&&tm(S[kk('t',r,'ar')])!=null;   // ov: az érkezés még az előző napon volt, a sor mindkét naphoz tartozik
@@ -114,7 +114,7 @@ function rg(g){
  for(let r=0;r<n;r++){
   const lb=(g.id=='t'?'Megálló ':'')+g.lab[r],hd=`<b>${lb}${dyn&&n>1?` <button type="button" class="s x" data-del="${g.id}.${r}">Töröl</button>`:''}</b>`;
   let b;
-  if(g.id=='t'){const P=['sk','sn','ar','dp'];
+  if(g.id=='t'){const P=['sn','ir','ar','dp','tr'];
    b=`<div class="f">${cs.filter(c=>P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div><details class="mo"><summary>További adatok (vonatszám, tömeg, fékszázalék…)</summary><div class="f">${cs.filter(c=>!P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div></details>`}
   else b=`<div class="f">${cs.map(c=>inp(g,r,c)).join('')}</div>`;
   s+=`<div class="r">${g.id=='t'||(g.lab[r]!==''&&g.id!='k')?hd:''}${b}</div>`;
