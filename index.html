@@ -72,7 +72,7 @@ const G=[
 ['vsz','Vonatszám',9,170,0,'29'],['mh','Menetvonal hív.',1,36,0,'30',1],['rh','Megrendelő hív.',1,36,0,'32',1],['tk','Tevékenység kód',3,90,0,'33'],
 ['el','Elegytömeg (t)',5,100,'SZIR – SZVÖRNET azonosító/Elegytömeg (t)','34'],['st','Személytengely',3,62,'SZIR – SZVÖRNET azonosító/Személy tengely','35'],['tt','Teher tengely',3,62,'SZIR – SZVÖRNET azonosító/Teher tengely','36'],
 ['vh','Vonathossz (m)',4,90,'Vonat-hossz (m)','37'],['eo','Előírt fékszázalék',3,50,'Fékszázalék/Előírt','38',1],['te','Tényleges fékszázalék',3,50,'Fékszázalék/Tényleges','39',1],
-['sn','Szolgálati hely neve',24,648,'Szolgálati hely megnevezése','40',0,{c:1}],['ir','Írásbeli r. sz.',3,70,0,'41'],
+['sn','Szolgálati hely neve',40,648,'Szolgálati hely megnevezése','40',0,{c:1}],['ir','Írásbeli r. sz.',3,70,0,'41'],
 ['ar','Érkezés',5,48,'Tolatási rendelkezésre állás/Érk./ó.','42',0,{t:1,s:0,lk:1}],['ar','Érkezés',5,48,'Tolatási rendelkezésre állás/Érk./p.','42',0,{t:1,s:1,lk:1}],['dp','Indulás',5,48,'Tolatási rendelkezésre állás/Ind./ó.','43',0,{t:1,s:0}],['dp','Indulás',5,48,'Tolatási rendelkezésre állás/Ind./p.','43',0,{t:1,s:1}],
 ['tr','További írásbeli rend. sz.',40,400,'Igazolás, További írásbeli rend. sz.','44',0,{c:1}]])},
 {id:'q',t:'Mellékletek (db)',lab:[''],custom:1,c:C([['a','Vonatterhelési kimutatás (db)',3],['b','Írásbeli rendelkezés (db)',3],['c','Fékpróba bárca (db)',3],['d','Tolatási kimutatás (db)',3],['e','Tolatási jegyzék (db)',3]])}
@@ -89,6 +89,7 @@ const TABS=[['a','Vonatadatok'],['s','Személyzet'],['j','Járművek'],['m','Meg
 const TB={k:'a',m:'a',i:'a',w:'a',q:'a',p:'s',f:'s',v:'j',n:'j',e:'j',t:'m'};
 const DYN={p:1,v:1,n:1,f:1,t:1};                       // sorai bővíthetők
 const TRK=['vsz','mh','el','st','tt','vh','eo','te','ef','vo','s2','s3','kt'];   // vonatadatok: az 1. sorba a Vonatadatok fül kerül, a többi sorba csak a megállónál megadott módosítás
+const NUM={vsz:1,mh:1,el:1,st:1,tt:1,vh:1,eo:1,te:1,rh:1},DEC={};   // számbillentyűzet
 const filled=r=>['sn','ar','dp','ir','tr'].some(k=>S[kk('t',r,k)]);
 function locs(){const o=[['','—']];for(let r=0;r<6;r++){const v=S[kk('v',r,'pa')];if(v)o.push([String(r+1),(r+1)+' · '+v])}
  'ABCDEF'.split('').forEach((l,r)=>{const v=S[kk('n',r,'pa')];if(v)o.push([l,l+' · '+v])});return o}
@@ -116,15 +117,15 @@ function kinfo(){const e=$('#kinfo');if(!e)return;
 const fmtPa=s=>{const d=s.replace(/\D/g,'').slice(0,12);let r=[d.slice(0,2),d.slice(2,4),d.slice(4,8),d.slice(8,11)].filter(x=>x).join(' ');return d.length>11?r+'-'+d[11]:r};  // xx xx xxxx xxx-x
 const inp=(g,r,c)=>{const lk=c.lk&&r==0;
  if(c.sel)return `<label>${c.l}<select id="${kk(g.id,r,c.k)}" data-g="${g.id}" data-r="${r}" data-k="${c.k}" data-lo></select></label>`;
- const i=`<input id="${kk(g.id,r,c.k)}" data-g="${g.id}" data-r="${r}" data-k="${c.k}" ${c.t?'type="time"':`maxlength="${c.n}" list="dl_${g.id}_${c.k}" autocomplete="off"${c.k=='pa'?' inputmode="numeric"':''}`}${lk?' disabled placeholder="lezárt"':''}>`;
+ const i=`<input id="${kk(g.id,r,c.k)}" data-g="${g.id}" data-r="${r}" data-k="${c.k}" ${c.t?'type="time"':`maxlength="${c.n}" list="dl_${g.id}_${c.k}" autocomplete="off"${c.k=='pa'||NUM[c.k]?' inputmode="numeric"':DEC[c.k]?' inputmode="decimal"':''}${c.k=='rh'&&r==0?' placeholder="1"':''}`}${lk?' disabled placeholder="lezárt"':''}>`;
  return `<label>${c.l}${c.t?`<span class="tp">${i}${lk?'':'<button type="button" class="s x" data-now>Most</button>'}</span>`:i}</label>`};
 function rg(g){
  const n=g.id=='k'?1:S.rc[g.id],cs=g.c.filter(c=>c.k&&c.s!==1&&!c.a),dyn=DYN[g.id];let s='';
  for(let r=0;r<n;r++){
   const lb=(g.id=='t'?'Megálló ':'')+g.lab[r],hd=`<b>${lb}${dyn&&n>1?` <button type="button" class="s x" data-del="${g.id}.${r}">Töröl</button>`:''}</b>`;
   let b;
-  if(g.id=='t'){const P=['sn','ir','ar','dp','tr'];
-   b=`<div class="f">${cs.filter(c=>P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div><details class="mo"><summary>Vonatadatok módosítása, további adatok</summary><div class="f">${cs.filter(c=>!P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div></details>`}
+  if(g.id=='t'){const P=['sn','tk','ir','ar','dp','tr'];
+   b=`<div class="f">${P.map(k=>cs.find(c=>c.k==k)).map(c=>inp(g,r,c)).join('')}</div><details class="mo"><summary>Vonatadatok módosítása, további adatok</summary><div class="f">${cs.filter(c=>!P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div></details>`}
   else b=`<div class="f">${cs.map(c=>inp(g,r,c)).join('')}</div>`;
   s+=`<div class="r">${g.id=='t'||(g.lab[r]!==''&&g.id!='k')?hd:''}${b}</div>`;
  }
@@ -159,7 +160,7 @@ function setv(g,r,k,v){S[kk(g,r,k)]=v;const e=document.getElementById(kk(g,r,k))
 document.addEventListener('input',e=>{
  const i=e.target;
  if(i.dataset.m){if(i.dataset.m=='mv')i.value=i.value.replace(/[^1-8]/g,'');S.mvs[i.dataset.i][i.dataset.m]=i.value;sv('ml_s',S)}
- else if(i.dataset.g){if(i.dataset.k=='pa')i.value=fmtPa(i.value);S[kk(i.dataset.g,i.dataset.r,i.dataset.k)]=i.value;sv('ml_s',S);kinfo();phs();if(i.dataset.g=='v'||i.dataset.g=='n')lo()}
+ else if(i.dataset.g){if(i.dataset.k=='pa')i.value=fmtPa(i.value);else if(NUM[i.dataset.k])i.value=i.value.replace(/\D/g,'');else if(DEC[i.dataset.k])i.value=i.value.replace(/[^\d.,]/g,'');S[kk(i.dataset.g,i.dataset.r,i.dataset.k)]=i.value;sv('ml_s',S);kinfo();phs();if(i.dataset.g=='v'||i.dataset.g=='n')lo()}
 });
 document.addEventListener('change',e=>{
  const i=e.target;if(!i.dataset.g)return;
@@ -217,7 +218,7 @@ function sheet(){
    if(rl){rc(g.x,yy,rl,rh);ct(g.x,yy,rl,rh,String(g.lab[r]),17,1)}
    c.forEach((k,i)=>{rc(xs[i],yy,k.w,rh);
     if(k.lk&&r==0){if(k.s===0)o.push(`<path d="M${xs[i]} ${yy+rh}L${xs[i+1]+c[i+1].w} ${yy}" stroke="#000" stroke-width="1.6"/>`)}
-    else{let v=k.k&&(g.id=='k'?KV(r,k.k):(g.id=='t'&&TRK.includes(k.k)&&r==0&&filled(0))?(S[kk('t',0,k.k)]||S[kk('w',0,k.k)]||''):S[kk(g.id,r,k.k)]);if(v&&k.s!==undefined)v=v.split(':')[k.s]||'';if(v)ct(xs[i],yy,k.w,rh,v,21,0,k.w>=80&&!k.c&&g.id!='t')}});
+    else{let v=k.k&&(g.id=='k'?KV(r,k.k):(g.id=='t'&&k.k=='rh'&&r==0&&filled(0))?(S[kk('t',0,'rh')]||'1'):(g.id=='t'&&TRK.includes(k.k)&&r==0&&filled(0))?(S[kk('t',0,k.k)]||S[kk('w',0,k.k)]||''):S[kk(g.id,r,k.k)]);if(v&&k.s!==undefined)v=v.split(':')[k.s]||'';if(v)ct(xs[i],yy,k.w,rh,v,21,0,k.w>=80&&!k.c&&g.id!='t')}});
   }
  };
  G.filter(g=>!g.custom).forEach(g=>tbl(g,g.id=='t'?{r1:9}:{}));
