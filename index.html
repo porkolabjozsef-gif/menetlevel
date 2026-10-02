@@ -62,13 +62,13 @@ const G=[
 {id:'k',t:'Közlekedés dátuma (automatikus)',o:1,lab:R(6),x:928,y:376,th:26,tt:'Közlekedés',hh:56,nh:0,rh:40,rl:26,rlh:'Sorszám',c:C([['ev','Év',4,70,'Közlekedés dátuma/Év'],['ho','Hó',2,52,'Közlekedés dátuma/Hó','12'],['nap','Nap',2,52,'Közlekedés dátuma/Nap'],['tol','Sor -tól',2,60,'Sor/-tól','13',0,{a:1}],['ig','Sor -ig',2,60,'Sor/-ig','14',0,{a:1}]])},
 {id:'m',t:'Menetvonalengedély száma, megrendelő',lab:[''],x:1248,y:376,th:26,tt:'Menetvonal, megrendelő',hh:56,nh:0,rh:40,c:C([['en','Menetvonalengedély száma',10,230,0,'15',0,{c:1}],['mr','Megrendelő vasútvállalat kódszáma',8,236,0,'16',0,{c:1}]])},
 {id:'i',t:'Menetvonal tulajdonos, vasútvállalat kódszám',lab:[''],custom:1,c:C([['tn','Menetvonal tulajdonos neve',30],['vk','Vasútvállalat kódszáma',8]])},
-{id:'w',t:'Vonat adatai (a megállók átveszik)',lab:[''],custom:1,c:C([['vsz','Vonatszám',9],['mh','Menetvonal hivatkozás',1],['el','Elegytömeg (t)',5],['st','Személytengely',3],['tt','Teher tengely',3],['vh','Vonathossz (m)',4],['eo','Előírt fékszázalék',3],['te','Tényleges fékszázalék',3]])},
+{id:'w',t:'Vonat adatai (az 1. megállósorba kerülnek)',lab:[''],custom:1,c:C([['vsz','Vonatszám',9],['mh','Menetvonal hivatkozás',1],['el','Elegytömeg (t)',5],['st','Személytengely',3],['tt','Teher tengely',3],['vh','Vonathossz (m)',4],['eo','Előírt fékszázalék',3],['te','Tényleges fékszázalék',3],['ef','Előfogat',1,0,0,'',0,{sel:1}],['vo','Vonó / Színkron',1,0,0,'',0,{sel:1}],['s2','Színkron 2',1,0,0,'',0,{sel:1}],['s3','Színkron 3',1,0,0,'',0,{sel:1}],['kt','Kapcsolt toló',1,0,0,'',0,{sel:1}]])},
 {id:'p',t:'Vonatszemélyzet',lab:['Mv',...R(8)],x:22,y:40,th:30,tt:'Vonatszemélyzet és a mozdonyon tartózkodó személyek adatai',hh:60,nh:0,rh:38.6,rl:26,rlh:'Sorszám',c:C([['nev','Név',28,300,0,'1',0,{c:1}],['tsz','Törzsszám',12,185,0,'2',0,{c:1}],['tol','Sorszám -tól',2,50,'Sorszám/-tól','3'],['ig','Sorszám -ig',2,50,'Sorszám/-ig','4'],['ok','Jelenlét oka',30,292,'Jelenlét oka, szolgálati minőség, olvasható aláírás','5',0,{c:1}]])},
 {id:'v',t:'Saját vezetésű jármű',lab:R(6),x:928,y:40,th:26,tt:'Vontatójárművek: saját vezetésű',hh:56,nh:0,rh:40,rl:26,rlh:'Sorszám',c:C([['pa','Pályaszám',16,484,0,'6',0,{c:1}],['uk','Üzemanyag kezd',5,100,'Üzemanyag (l; 100kWh)/Kezd','7',0,{c:1}],['uv','Üzemanyag végez',5,100,'Üzemanyag (l; 100kWh)/Végez','8',0,{c:1}]])},
 {id:'n',t:'Nem saját vezetésű jármű',lab:'ABCDEF'.split(''),x:1638,y:40,th:26,tt:'Nem saját vezetésű',hh:56,nh:0,rh:40,rl:26,c:C([['pa','Pályaszám',16,330,0,'9',0,{c:1}]])},
 {id:'e',t:'További menetlevelek',lab:['Előző','Következő'],x:1994,y:40,th:26,tt:'További menetlevelek',hh:56,nh:0,rh:40,rl:92,rlm:1,c:C([['sz','Menetlevél száma',10,196,0,'10–11']])},
 {id:'f',t:'Fékpróba / vonatvizsgálat',lab:R(12),x:22,y:490,th:28,tt:'Fékpróba / vonatvizsgálat E.2., E.12. Utasításoknak megfelelően megtörtént, a vonat közlekedtethető',hh:64,nh:0,rh:39.5,rl:26,rlh:'Sorszám',c:C([['nev','Név',28,300,0,'17',0,{c:1}],['fv','Fékpróba (x)',1,28,'Fékv.','18',1],['vv','Vonatvizsgálat (x)',1,28,'Vonatv.','',1],['kod','Foglalkoztató vasútvállalat kódszáma',8,175,0,'19',0,{c:1}],['sh','Sorhivatkozás',2,55,'Sor-hiv.','20'],['','',0,292,'Olvasható aláírás','21']])},
-{id:'t',t:'Megállók',lab:R(46),x:22,y:1084,th:0,hh:110,nh:0,rh:42.2,rl:28,rlh:'Sorszám',c:C([['ef','Előfogat (x)',1,34,'Előfogat','24',1],['vo','Vonó / Színkron (x)',1,34,'Vonó – Színkron','25',1],['s2','Színkron 2 (x)',1,34,'Színkron 2','26',1],['s3','Színkron 3 (x)',1,34,'Színkron 3','27',1],['kt','Kapcsolt toló (x)',1,34,'Kapcsolt toló','28',1],
+{id:'t',t:'Megállók',lab:R(46),x:22,y:1084,th:0,hh:110,nh:0,rh:42.2,rl:28,rlh:'Sorszám',c:C([['ef','Előfogat',1,34,'Előfogat','24',1,{sel:1}],['vo','Vonó / Színkron',1,34,'Vonó – Színkron','25',1,{sel:1}],['s2','Színkron 2',1,34,'Színkron 2','26',1,{sel:1}],['s3','Színkron 3',1,34,'Színkron 3','27',1,{sel:1}],['kt','Kapcsolt toló',1,34,'Kapcsolt toló','28',1,{sel:1}],
 ['vsz','Vonatszám',9,170,0,'29'],['mh','Menetvonal hív.',1,36,0,'30',1],['rh','Megrendelő hív.',1,36,0,'32',1],['tk','Tevékenység kód',3,90,0,'33'],
 ['el','Elegytömeg (t)',5,100,'SZIR – SZVÖRNET azonosító/Elegytömeg (t)','34'],['st','Személytengely',3,62,'SZIR – SZVÖRNET azonosító/Személy tengely','35'],['tt','Teher tengely',3,62,'SZIR – SZVÖRNET azonosító/Teher tengely','36'],
 ['vh','Vonathossz (m)',4,90,'Vonat-hossz (m)','37'],['eo','Előírt fékszázalék',3,50,'Fékszázalék/Előírt','38',1],['te','Tényleges fékszázalék',3,50,'Fékszázalék/Tényleges','39',1],
@@ -88,10 +88,14 @@ let TAB=ld('ml_tab').t||'a';
 const TABS=[['a','Vonatadatok'],['s','Személyzet'],['j','Járművek'],['m','Megállók'],['n','Megjegyzés']];
 const TB={k:'a',m:'a',i:'a',w:'a',q:'a',p:'s',f:'s',v:'j',n:'j',e:'j',t:'m'};
 const DYN={p:1,v:1,n:1,f:1,t:1};                       // sorai bővíthetők
-const TRK=['vsz','mh','el','st','tt','vh','eo','te'];   // vonatadatok: megálló saját értéke > előző sor > Vonatadatok fül
+const TRK=['vsz','mh','el','st','tt','vh','eo','te','ef','vo','s2','s3','kt'];   // vonatadatok: az 1. sorba a Vonatadatok fül kerül, a többi sorba csak a megállónál megadott módosítás
 const filled=r=>['sn','ar','dp','ir','tr'].some(k=>S[kk('t',r,k)]);
-function eff(r,k){for(let q=r;q>=0;q--){const v=S[kk('t',q,k)];if(v)return v}return S[kk('w',0,k)]||''}
-function phs(){document.querySelectorAll('[data-g="t"]').forEach(i=>{if(TRK.includes(i.dataset.k))i.placeholder=eff(+i.dataset.r,i.dataset.k)})}
+function locs(){const o=[['','—']];for(let r=0;r<6;r++){const v=S[kk('v',r,'pa')];if(v)o.push([String(r+1),(r+1)+' · '+v])}
+ 'ABCDEF'.split('').forEach((l,r)=>{const v=S[kk('n',r,'pa')];if(v)o.push([l,l+' · '+v])});return o}
+function lo(){const o=locs();document.querySelectorAll('select[data-lo]').forEach(s=>{const g=s.dataset.g,r=+s.dataset.r,k=s.dataset.k,cur=S[kk(g,r,k)]||'';
+ const inh=g=='t'&&r==0?(S[kk('w',0,k)]||''):'';let h=o.map(([v,l],i)=>`<option value="${v}">${esc(i==0&&inh?'↑ '+inh:l)}</option>`).join('');
+ if(cur&&!o.some(x=>x[0]==cur))h+=`<option value="${esc(cur)}">${esc(cur)}</option>`;s.innerHTML=h;s.value=cur})}
+function phs(){document.querySelectorAll('[data-g="t"]').forEach(i=>{if(TRK.includes(i.dataset.k))i.placeholder=+i.dataset.r==0?(S[kk('w',0,i.dataset.k)]||''):''})}
 function initrc(){S.rc=S.rc||{};G.forEach(g=>{let n=DYN[g.id]?Math.max(1,S.rc[g.id]||1):g.lab.length;
  if(DYN[g.id])for(const key in S){const q=key.split('.');if(q[0]==g.id&&q.length==3&&S[key])n=Math.max(n,+q[1]+1)}
  S.rc[g.id]=Math.min(n,g.lab.length)})}
@@ -111,6 +115,7 @@ function kinfo(){const e=$('#kinfo');if(!e)return;
  e.innerHTML='<b>Automatikus sorok</b>'+dates().map(s=>`<div>${s.ev?`${s.ev}.${s.ho}.${s.nap}.`:'—'} &nbsp; ${s.from?`${s.from}–${s.to}. sor`:''}</div>`).join('')}
 const fmtPa=s=>{const d=s.replace(/\D/g,'').slice(0,12);let r=[d.slice(0,2),d.slice(2,4),d.slice(4,8),d.slice(8,11)].filter(x=>x).join(' ');return d.length>11?r+'-'+d[11]:r};  // xx xx xxxx xxx-x
 const inp=(g,r,c)=>{const lk=c.lk&&r==0;
+ if(c.sel)return `<label>${c.l}<select id="${kk(g.id,r,c.k)}" data-g="${g.id}" data-r="${r}" data-k="${c.k}" data-lo></select></label>`;
  const i=`<input id="${kk(g.id,r,c.k)}" data-g="${g.id}" data-r="${r}" data-k="${c.k}" ${c.t?'type="time"':`maxlength="${c.n}" list="dl_${g.id}_${c.k}" autocomplete="off"${c.k=='pa'?' inputmode="numeric"':''}`}${lk?' disabled placeholder="lezárt"':''}>`;
  return `<label>${c.l}${c.t?`<span class="tp">${i}${lk?'':'<button type="button" class="s x" data-now>Most</button>'}</span>`:i}</label>`};
 function rg(g){
@@ -119,7 +124,7 @@ function rg(g){
   const lb=(g.id=='t'?'Megálló ':'')+g.lab[r],hd=`<b>${lb}${dyn&&n>1?` <button type="button" class="s x" data-del="${g.id}.${r}">Töröl</button>`:''}</b>`;
   let b;
   if(g.id=='t'){const P=['sn','ir','ar','dp','tr'];
-   b=`<div class="f">${cs.filter(c=>P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div><details class="mo"><summary>További adatok (üresen hagyva az előző sor / Vonatadatok érvényes)</summary><div class="f">${cs.filter(c=>!P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div></details>`}
+   b=`<div class="f">${cs.filter(c=>P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div><details class="mo"><summary>Vonatadatok módosítása, további adatok</summary><div class="f">${cs.filter(c=>!P.includes(c.k)).map(c=>inp(g,r,c)).join('')}</div></details>`}
   else b=`<div class="f">${cs.map(c=>inp(g,r,c)).join('')}</div>`;
   s+=`<div class="r">${g.id=='t'||(g.lab[r]!==''&&g.id!='k')?hd:''}${b}</div>`;
  }
@@ -130,11 +135,11 @@ function rg(g){
 function ui(){
  $('#tabs').innerHTML=TABS.map(([t,l])=>`<button type="button" class="${t==TAB?'on':''}" data-tab="${t}">${l}</button>`).join('');
  $('#g').innerHTML=TABS.map(([t])=>`<section data-t="${t}"${t==TAB?'':' hidden'}>`+(t=='n'?`<div class="gh"><h2>Megjegyzés</h2><div id="mvs"></div><div class="r"><button type="button" class="s" id="am">Új Mv.</button></div></div>`:G.filter(g=>TB[g.id]==t).map(g=>`<div class="gh"><h2>${g.t}</h2><div id="G_${g.id}">${rg(g)}</div></div>`).join(''))+`</section>`).join('');
- $('#dls').innerHTML=G.map(g=>g.c.filter(c=>c.k&&!c.t).map(c=>`<datalist id="dl_${g.id}_${c.k}">${dlh(g.id+'_'+c.k)}</datalist>`).join('')).join('');
+ $('#dls').innerHTML=G.map(g=>g.c.filter(c=>c.k&&!c.t&&!c.sel).map(c=>`<datalist id="dl_${g.id}_${c.k}">${dlh(g.id+'_'+c.k)}</datalist>`).join('')).join('');
  mvr();
 }
 function fill(){document.querySelectorAll('[data-g]').forEach(i=>i.value=S[kk(i.dataset.g,i.dataset.r,i.dataset.k)]||'');
- const n=new Date();[['ev',n.getFullYear()],['ho',String(n.getMonth()+1).padStart(2,'0')],['nap',String(n.getDate()).padStart(2,'0')]].forEach(([k,v])=>{const i=document.querySelector('[data-g="k"][data-k="'+k+'"]');if(i)i.placeholder=v});phs();kinfo()}
+ const n=new Date();[['ev',n.getFullYear()],['ho',String(n.getMonth()+1).padStart(2,'0')],['nap',String(n.getDate()).padStart(2,'0')]].forEach(([k,v])=>{const i=document.querySelector('[data-g="k"][data-k="'+k+'"]');if(i)i.placeholder=v});phs();lo();kinfo()}
 const rr=g=>{$('#G_'+g.id).innerHTML=rg(g);fill()};
 function mvr(){
  const n=S.mvs.length;
@@ -154,7 +159,7 @@ function setv(g,r,k,v){S[kk(g,r,k)]=v;const e=document.getElementById(kk(g,r,k))
 document.addEventListener('input',e=>{
  const i=e.target;
  if(i.dataset.m){if(i.dataset.m=='mv')i.value=i.value.replace(/[^1-8]/g,'');S.mvs[i.dataset.i][i.dataset.m]=i.value;sv('ml_s',S)}
- else if(i.dataset.g){if(i.dataset.k=='pa')i.value=fmtPa(i.value);S[kk(i.dataset.g,i.dataset.r,i.dataset.k)]=i.value;sv('ml_s',S);kinfo();phs()}
+ else if(i.dataset.g){if(i.dataset.k=='pa')i.value=fmtPa(i.value);S[kk(i.dataset.g,i.dataset.r,i.dataset.k)]=i.value;sv('ml_s',S);kinfo();phs();if(i.dataset.g=='v'||i.dataset.g=='n')lo()}
 });
 document.addEventListener('change',e=>{
  const i=e.target;if(!i.dataset.g)return;
@@ -167,7 +172,7 @@ document.addEventListener('change',e=>{
 });
 $('#nw').onclick=()=>{if(confirm('Törlöd az aktuális lap adatait? (A mentett nevek, kódok megmaradnak.)')){S={mvs:[{}]};sv('ml_s',S);load()}};
 document.addEventListener('click',e=>{const d=e.target.dataset;
- if(d.tab){TAB=d.tab;sv('ml_tab',{t:TAB});document.querySelectorAll('[data-t]').forEach(s=>s.hidden=s.dataset.t!=TAB);document.querySelectorAll('#tabs button').forEach(b=>b.className=b.dataset.tab==TAB?'on':'');scrollTo(0,0)}
+ if(d.tab){TAB=d.tab;sv('ml_tab',{t:TAB});document.querySelectorAll('[data-t]').forEach(s=>s.hidden=s.dataset.t!=TAB);document.querySelectorAll('#tabs button').forEach(b=>b.className=b.dataset.tab==TAB?'on':'');scrollTo(0,0);lo()}
  else if(d.add){const g=GI[d.add],n=S.rc[g.id];if(n<g.lab.length){S.rc[g.id]=n+1;sv('ml_s',S);rr(g);const f=document.querySelector('#G_'+g.id+' [data-r="'+n+'"]:not(:disabled)');if(f)f.focus()}}
  else if(d.del){const [id,r]=d.del.split('.'),g=GI[id],n=S.rc[id];for(let q=+r;q<n-1;q++)g.c.forEach(c=>{if(c.k)S[kk(id,q,c.k)]=S[kk(id,q+1,c.k)]||''});g.c.forEach(c=>{if(c.k)delete S[kk(id,n-1,c.k)]});S.rc[id]=n-1;sv('ml_s',S);rr(g)}
  else if('today' in d){['ev','ho','nap'].forEach(k=>{const i=document.querySelector('[data-g="k"][data-k="'+k+'"]');i.value='';i.dispatchEvent(new Event('input',{bubbles:true}))})}
@@ -212,7 +217,7 @@ function sheet(){
    if(rl){rc(g.x,yy,rl,rh);ct(g.x,yy,rl,rh,String(g.lab[r]),17,1)}
    c.forEach((k,i)=>{rc(xs[i],yy,k.w,rh);
     if(k.lk&&r==0){if(k.s===0)o.push(`<path d="M${xs[i]} ${yy+rh}L${xs[i+1]+c[i+1].w} ${yy}" stroke="#000" stroke-width="1.6"/>`)}
-    else{let v=k.k&&(g.id=='k'?KV(r,k.k):(g.id=='t'&&TRK.includes(k.k)&&filled(r))?eff(r,k.k):S[kk(g.id,r,k.k)]);if(v&&k.s!==undefined)v=v.split(':')[k.s]||'';if(v)ct(xs[i],yy,k.w,rh,v,21,0,k.w>=80&&!k.c&&g.id!='t')}});
+    else{let v=k.k&&(g.id=='k'?KV(r,k.k):(g.id=='t'&&TRK.includes(k.k)&&r==0&&filled(0))?(S[kk('t',0,k.k)]||S[kk('w',0,k.k)]||''):S[kk(g.id,r,k.k)]);if(v&&k.s!==undefined)v=v.split(':')[k.s]||'';if(v)ct(xs[i],yy,k.w,rh,v,21,0,k.w>=80&&!k.c&&g.id!='t')}});
   }
  };
  G.filter(g=>!g.custom).forEach(g=>tbl(g,g.id=='t'?{r1:9}:{}));
