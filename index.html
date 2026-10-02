@@ -59,15 +59,15 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 // oszlop: [kulcs, űrlap-címke, max karakter, szélesség, fejléc (szintek '/'-jellel), mezőszám, forgatott fejléc]
 const C=a=>a.map(([k,l,n,w,h,num,r,o])=>({k,l,n,w,h:(h||l).split('/'),num:num||'',r,...(o||{})}));
 const G=[
-{id:'k',t:'12–14 Közlekedés dátuma (automatikus)',o:1,lab:R(6),x:928,y:376,th:26,tt:'Közlekedés',hh:56,nh:24,rh:36,rl:26,rlh:'Sorszám',c:C([['ev','Év',4,70,'Közlekedés dátuma/Év'],['ho','Hó',2,52,'Közlekedés dátuma/Hó','12'],['nap','Nap',2,52,'Közlekedés dátuma/Nap'],['tol','Sor -tól',2,60,'Sor/-tól','13',0,{a:1}],['ig','Sor -ig',2,60,'Sor/-ig','14',0,{a:1}]])},
-{id:'m',t:'15–16 Engedélyszám, megrendelő',lab:[''],x:1248,y:376,th:26,tt:'Menetvonal, megrendelő',hh:56,nh:24,rh:36,c:C([['en','Menetvonal engedélyszáma',10,230,0,'15'],['mr','Megrendelő vasútvállalat kódszáma',8,236,0,'16']])},
+{id:'k',t:'Közlekedés dátuma (automatikus)',o:1,lab:R(6),x:928,y:376,th:26,tt:'Közlekedés',hh:56,nh:0,rh:40,rl:26,rlh:'Sorszám',c:C([['ev','Év',4,70,'Közlekedés dátuma/Év'],['ho','Hó',2,52,'Közlekedés dátuma/Hó','12'],['nap','Nap',2,52,'Közlekedés dátuma/Nap'],['tol','Sor -tól',2,60,'Sor/-tól','13',0,{a:1}],['ig','Sor -ig',2,60,'Sor/-ig','14',0,{a:1}]])},
+{id:'m',t:'Menetvonalengedély száma, megrendelő',lab:[''],x:1248,y:376,th:26,tt:'Menetvonal, megrendelő',hh:56,nh:0,rh:40,c:C([['en','Menetvonalengedély száma',10,230,0,'15',0,{c:1}],['mr','Megrendelő vasútvállalat kódszáma',8,236,0,'16',0,{c:1}]])},
 {id:'i',t:'Menetvonal tulajdonos, vasútvállalat kódszám',lab:[''],custom:1,c:C([['tn','Menetvonal tulajdonos neve',30],['vk','Vasútvállalat kódszáma',8]])},
-{id:'p',t:'1–5 Vonatszemélyzet',lab:['Mv',...R(8)],x:22,y:40,th:30,tt:'Vonatszemélyzet és a mozdonyon tartózkodó személyek adatai',hh:60,nh:24,rh:36,rl:26,rlh:'Sorszám',c:C([['nev','Név',28,300,0,'1',0,{c:1}],['tsz','Törzsszám',12,185,0,'2',0,{c:1}],['tol','Sorszám -tól',2,50,'Sorszám/-tól','3'],['ig','Sorszám -ig',2,50,'Sorszám/-ig','4'],['ok','Jelenlét oka',30,292,'Jelenlét oka, szolgálati minőség, olvasható aláírás','5',0,{c:1}]])},
-{id:'v',t:'6–8 Saját vezetésű jármű',lab:R(6),x:928,y:40,th:26,tt:'Vontatójárművek: saját vezetésű',hh:56,nh:24,rh:36,rl:26,rlh:'Sorszám',c:C([['pa','Pályaszám',16,484,0,'6',0,{c:1}],['uk','Üzemanyag kezd',5,100,'Üzemanyag (l; 100kWh)/Kezd','7',0,{c:1}],['uv','Üzemanyag végez',5,100,'Üzemanyag (l; 100kWh)/Végez','8',0,{c:1}]])},
-{id:'n',t:'9 Nem saját vezetésű jármű',lab:'ABCDEF'.split(''),x:1638,y:40,th:26,tt:'Nem saját vezetésű',hh:56,nh:24,rh:36,rl:26,c:C([['pa','Pályaszám',16,330,0,'9',0,{c:1}]])},
-{id:'e',t:'10–11 További menetlevelek',lab:['Előző','Következő'],x:1994,y:40,th:26,tt:'További menetlevelek',hh:56,nh:24,rh:36,rl:92,c:C([['sz','Menetlevél száma',10,196,0,'10–11']])},
-{id:'f',t:'17–21 Fékpróba / vonatvizsgálat',lab:R(12),x:22,y:490,th:28,tt:'Fékpróba / vonatvizsgálat E.2., E.12. Utasításoknak megfelelően megtörtént, a vonat közlekedtethető',hh:64,nh:24,rh:37.5,rl:26,rlh:'Sorszám',c:C([['nev','Név',28,300,0,'17',0,{c:1}],['fv','Fékpróba (x)',1,28,'Fékv.','18',1],['vv','Vonatvizsgálat (x)',1,28,'Vonatv.','',1],['kod','Foglalkoztató vasútvállalat kódszáma',8,175,0,'19',0,{c:1}],['sh','Sorhivatkozás',2,55,'Sor-hiv.','20'],['','',0,292,'Olvasható aláírás','21']])},
-{id:'t',t:'23–44 Vonat adatai',lab:R(46),x:22,y:1084,th:0,hh:110,nh:24,rh:39.5,rl:28,rlh:'Sorszám',rln:'23',c:C([['ef','Előfogat (x)',1,34,'Előfogat','24',1],['vo','Vonó / Színkron (x)',1,34,'Vonó – Színkron','25',1],['s2','Színkron 2 (x)',1,34,'Színkron 2','26',1],['s3','Színkron 3 (x)',1,34,'Színkron 3','27',1],['kt','Kapcsolt toló (x)',1,34,'Kapcsolt toló','28',1],
+{id:'p',t:'Vonatszemélyzet',lab:['Mv',...R(8)],x:22,y:40,th:30,tt:'Vonatszemélyzet és a mozdonyon tartózkodó személyek adatai',hh:60,nh:0,rh:38.6,rl:26,rlh:'Sorszám',c:C([['nev','Név',28,300,0,'1',0,{c:1}],['tsz','Törzsszám',12,185,0,'2',0,{c:1}],['tol','Sorszám -tól',2,50,'Sorszám/-tól','3'],['ig','Sorszám -ig',2,50,'Sorszám/-ig','4'],['ok','Jelenlét oka',30,292,'Jelenlét oka, szolgálati minőség, olvasható aláírás','5',0,{c:1}]])},
+{id:'v',t:'Saját vezetésű jármű',lab:R(6),x:928,y:40,th:26,tt:'Vontatójárművek: saját vezetésű',hh:56,nh:0,rh:40,rl:26,rlh:'Sorszám',c:C([['pa','Pályaszám',16,484,0,'6',0,{c:1}],['uk','Üzemanyag kezd',5,100,'Üzemanyag (l; 100kWh)/Kezd','7',0,{c:1}],['uv','Üzemanyag végez',5,100,'Üzemanyag (l; 100kWh)/Végez','8',0,{c:1}]])},
+{id:'n',t:'Nem saját vezetésű jármű',lab:'ABCDEF'.split(''),x:1638,y:40,th:26,tt:'Nem saját vezetésű',hh:56,nh:0,rh:40,rl:26,c:C([['pa','Pályaszám',16,330,0,'9',0,{c:1}]])},
+{id:'e',t:'További menetlevelek',lab:['Előző','Következő'],x:1994,y:40,th:26,tt:'További menetlevelek',hh:56,nh:0,rh:40,rl:92,rlm:1,c:C([['sz','Menetlevél száma',10,196,0,'10–11']])},
+{id:'f',t:'Fékpróba / vonatvizsgálat',lab:R(12),x:22,y:490,th:28,tt:'Fékpróba / vonatvizsgálat E.2., E.12. Utasításoknak megfelelően megtörtént, a vonat közlekedtethető',hh:64,nh:0,rh:39.5,rl:26,rlh:'Sorszám',c:C([['nev','Név',28,300,0,'17',0,{c:1}],['fv','Fékpróba (x)',1,28,'Fékv.','18',1],['vv','Vonatvizsgálat (x)',1,28,'Vonatv.','',1],['kod','Foglalkoztató vasútvállalat kódszáma',8,175,0,'19',0,{c:1}],['sh','Sorhivatkozás',2,55,'Sor-hiv.','20'],['','',0,292,'Olvasható aláírás','21']])},
+{id:'t',t:'Vonat adatai (megállók)',lab:R(46),x:22,y:1084,th:0,hh:110,nh:0,rh:42.2,rl:28,rlh:'Sorszám',c:C([['ef','Előfogat (x)',1,34,'Előfogat','24',1],['vo','Vonó / Színkron (x)',1,34,'Vonó – Színkron','25',1],['s2','Színkron 2 (x)',1,34,'Színkron 2','26',1],['s3','Színkron 3 (x)',1,34,'Színkron 3','27',1],['kt','Kapcsolt toló (x)',1,34,'Kapcsolt toló','28',1],
 ['vsz','Vonatszám',9,170,0,'29'],['mh','Menetvonal hív.',1,36,0,'30',1],['sk','Szolgálati hely kód',8,150,0,'31'],['rh','Megrendelő hív.',1,36,0,'32',1],['tk','Tevékenység kód',3,90,0,'33'],
 ['el','Elegytömeg (t)',5,100,'SZIR – SZVÖRNET azonosító/Elegytömeg (t)','34'],['st','Személytengely',3,62,'SZIR – SZVÖRNET azonosító/Személy tengely','35'],['tt','Teher tengely',3,62,'SZIR – SZVÖRNET azonosító/Teher tengely','36'],
 ['vh','Vonathossz (m)',4,90,'Vonat-hossz (m)','37'],['eo','Előírt fékszázalék',3,50,'Fékszázalék/Előírt','38',1],['te','Tényleges fékszázalék',3,50,'Fékszázalék/Tényleges','39',1],
@@ -104,7 +104,7 @@ function dates(){   // közlekedés dátuma: az első nap + a megállók idejéb
   return{...s,ev:String(q.getUTCFullYear()),ho:String(q.getUTCMonth()+1).padStart(2,'0'),nap:String(q.getUTCDate()).padStart(2,'0')}});
 }
 function kinfo(){const e=$('#kinfo');if(!e)return;
- e.innerHTML='<b>Automatikus sorok (12–14)</b>'+dates().map(s=>`<div>${s.ev?`${s.ev}.${s.ho}.${s.nap}.`:'—'} &nbsp; ${s.from?`${s.from}–${s.to}. sor`:''}</div>`).join('')}
+ e.innerHTML='<b>Automatikus sorok</b>'+dates().map(s=>`<div>${s.ev?`${s.ev}.${s.ho}.${s.nap}.`:'—'} &nbsp; ${s.from?`${s.from}–${s.to}. sor`:''}</div>`).join('')}
 const fmtPa=s=>{const d=s.replace(/\D/g,'').slice(0,12);let r=[d.slice(0,2),d.slice(2,4),d.slice(4,8),d.slice(8,11)].filter(x=>x).join(' ');return d.length>11?r+'-'+d[11]:r};  // xx xx xxxx xxx-x
 const inp=(g,r,c)=>{const lk=c.lk&&r==0;
  const i=`<input id="${kk(g.id,r,c.k)}" data-g="${g.id}" data-r="${r}" data-k="${c.k}" ${c.t?'type="time"':`maxlength="${c.n}" list="dl_${g.id}_${c.k}" autocomplete="off"${c.k=='pa'?' inputmode="numeric"':''}`}${lk?' disabled placeholder="lezárt"':''}>`;
@@ -125,7 +125,7 @@ function rg(g){
 }
 function ui(){
  $('#tabs').innerHTML=TABS.map(([t,l])=>`<button type="button" class="${t==TAB?'on':''}" data-tab="${t}">${l}</button>`).join('');
- $('#g').innerHTML=TABS.map(([t])=>`<section data-t="${t}"${t==TAB?'':' hidden'}>`+(t=='n'?`<div class="gh"><h2>22 Megjegyzés</h2><div id="mvs"></div><div class="r"><button type="button" class="s" id="am">Új Mv.</button></div></div>`:G.filter(g=>TB[g.id]==t).map(g=>`<div class="gh"><h2>${g.t}</h2><div id="G_${g.id}">${rg(g)}</div></div>`).join(''))+`</section>`).join('');
+ $('#g').innerHTML=TABS.map(([t])=>`<section data-t="${t}"${t==TAB?'':' hidden'}>`+(t=='n'?`<div class="gh"><h2>Megjegyzés</h2><div id="mvs"></div><div class="r"><button type="button" class="s" id="am">Új Mv.</button></div></div>`:G.filter(g=>TB[g.id]==t).map(g=>`<div class="gh"><h2>${g.t}</h2><div id="G_${g.id}">${rg(g)}</div></div>`).join(''))+`</section>`).join('');
  $('#dls').innerHTML=G.map(g=>g.c.filter(c=>c.k&&!c.t).map(c=>`<datalist id="dl_${g.id}_${c.k}">${dlh(g.id+'_'+c.k)}</datalist>`).join('')).join('');
  mvr();
 }
@@ -192,16 +192,16 @@ function sheet(){
   const W=xs[xs.length-1]-g.x;let y=op.y??g.y;
   if(g.tt){rc(g.x,y,W,g.th);ct(g.x,y,W,g.th,g.tt,17,1);y+=g.th}
   const L=Math.max(...c.map(k=>k.h.length)),r0=g.hh/L;
-  if(rl){rc(g.x,y,rl,g.hh+g.nh);lab(g.x,y,rl,g.hh,g.rlh||'',14,1);if(g.rln)ct(g.x,y+g.hh,rl,g.nh,g.rln,15)}
+  if(rl&&!g.rlm){rc(g.x,y,rl,g.hh+g.nh);lab(g.x,y,rl,g.hh,g.rlh||'',14,1);if(g.rln)ct(g.x,y+g.hh,rl,g.nh,g.rln,15)}
   for(let l=0;l<L;l++)for(let i=0;i<c.length;){
    const k=c[i];if(k.h.length<=l){i++;continue}
    const key=k.h.slice(0,l+1).join('|'),term=k.h.length==l+1;let j=i;
    while(j+1<c.length&&c[j+1].h.length>l&&c[j+1].h.slice(0,l+1).join('|')==key&&(c[j+1].h.length==l+1)==term)j++;
-   const x0=xs[i],w=xs[j+1]-x0,y0=y+l*r0,hh=term?g.hh-l*r0:r0;
+   const x0=g.rlm&&i==0?g.x:xs[i],w=xs[j+1]-x0,y0=y+l*r0,hh=term?g.hh-l*r0:r0;
    rc(x0,y0,w,hh);lab(x0,y0,w,hh,k.h[l],14,k.r&&term);i=j+1;
   }
   y+=g.hh;
-  c.forEach((k,i)=>{rc(xs[i],y,k.w,g.nh);if(k.num)ct(xs[i],y,k.w,g.nh,k.num,15)});
+  if(g.nh)c.forEach((k,i)=>{rc(xs[i],y,k.w,g.nh);if(k.num)ct(xs[i],y,k.w,g.nh,k.num,15)});
   y+=g.nh;
   const ra=op.r0||0,rb=op.r1??g.lab.length,rh=op.rh||g.rh;
   for(let r=ra;r<rb;r++){const yy=y+(r-ra)*rh;
@@ -223,7 +223,7 @@ function sheet(){
  for(let i=0;i<8;i++){rc(1832+i*50,634,50,34);if(v('i','vk')[i])T(1857+i*50,658,v('i','vk')[i],22)}
  T(2032,690,'Vasútvállalat kódszáma',19,{b:1});
  // 26. Megjegyzés
- rc(928,708,1354,368);T(944,736,'22. Megjegyzés:',22,{b:1,a:1});
+ rc(928,708,1354,368);T(944,736,'Megjegyzés:',22,{b:1,a:1});
  const L=S.mvs.filter(x=>MK.some(k=>x[k])),sp=' ';
  const em=Math.max(mw('Mv. sorsz: 8'+sp+'Kezd: 00:00'+sp+'Végez: 00:00',100,1),mw('MKSZ1: 00:00 - 00:00'+sp+'MKSZ2: 00:00 - 00:00',100,1))/100;
  const CW=450,fs=Math.min(28,CW/em)||20,pp=fs*1.45,gp=pp*.35;
@@ -235,7 +235,7 @@ function sheet(){
  const W=b=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2320 1580" font-family="${FF}" text-anchor="middle" fill="#000"><rect width="2320" height="1580" fill="#fff"/>${b}</svg>`;
  const P=[W(o.join(''))];
  if(G.find(g=>g.id=='t').c.some(c=>{if(!c.k)return false;for(let r=9;r<46;r++)if(S[kk('t',r,c.k)])return true}))
-  {o.length=0;tbl(GI.t,{r0:9,r1:46,y:20,rh:38});P.push(W(o.join('')))}
+  {o.length=0;tbl(GI.t,{r0:9,r1:46,y:20,rh:38.8});P.push(W(o.join('')))}
  return P.join('');
 }
 $('#pv').addEventListener('toggle',()=>{if($('#pv').open)$('#pvb').innerHTML=sheet()});
